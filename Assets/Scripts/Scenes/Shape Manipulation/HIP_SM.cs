@@ -137,7 +137,7 @@ public class HIP_SM : MonoBehaviour
         }
         else
         {
-            material.color = Color.white;
+            material = IHIP.GetComponent<Renderer>().material;
         }
 
         // update damping factors
