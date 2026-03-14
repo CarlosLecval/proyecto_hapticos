@@ -144,6 +144,7 @@
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
     transition-property: background-color, scale;
     transition-duration: 140ms;
+    margin-bottom: 10px;
 }
 
 .menu-button:hover {
