@@ -1,0 +1,19 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Editor/MainMenu.uss?fileID=7433441132597879392&amp;guid=f4bb5a947ea9649189c49286cb034be4&amp;type=3#MainMenu"/>
+    <ui:VisualElement name="MenuRoot" class="menu-root">
+        <ui:VisualElement class="bg-tilt"/>
+        <ui:VisualElement class="bg-stripes"/>
+        <ui:VisualElement class="bg-glow"/>
+        <ui:VisualElement class="menu-content">
+            <ui:VisualElement class="header">
+                <ui:Label text="Football Champs" class="title"/>
+                <ui:Label text=" " class="subtitle"/>
+            </ui:VisualElement>
+            <ui:VisualElement class="menu-card">
+                <ui:Button name="play-button" text="Play" class="menu-button"/>
+                <ui:Button name="options-button" text="Options" class="menu-button ghost"/>
+                <ui:Button name="quit-button" text="Quit" class="menu-button danger"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
