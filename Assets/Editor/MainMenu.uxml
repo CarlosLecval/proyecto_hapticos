@@ -3,10 +3,10 @@
     <ui:VisualElement name="MenuRoot" class="menu-root">
         <ui:VisualElement class="bg-tilt"/>
         <ui:VisualElement class="bg-stripes"/>
-        <ui:VisualElement class="bg-glow"/>
+        <ui:VisualElement class="bg-ball" style="top: -36px; right: -44px; opacity: 0.28;"/>
         <ui:VisualElement class="menu-content">
             <ui:VisualElement class="header">
-                <ui:Label text="Football Champs" class="title"/>
+                <ui:Label text="Football Champs" class="title" style="color: rgb(108, 183, 253);"/>
                 <ui:Label text=" " class="subtitle"/>
             </ui:VisualElement>
             <ui:VisualElement class="menu-card">
