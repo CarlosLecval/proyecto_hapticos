@@ -1895,6 +1895,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2113542310}
   - component: {fileID: 2113542311}
+  - component: {fileID: 2113542312}
   m_Layer: 0
   m_Name: Haptic Manager (HM)
   m_TagString: Untagged
@@ -1933,6 +1934,20 @@ MonoBehaviour:
   - {fileID: 25487382}
   - {fileID: 631165462}
   workspace: 500
+--- !u!114 &2113542312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2113542309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 192f0e4218de43cdbb48d0cdb8dcf79c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TeamAssignmentApplier
+  redTeamMaterial: {fileID: 2100000, guid: ac56f4def00adcb4eba937f2adc5ca12, type: 2}
+  blueTeamMaterial: {fileID: 2100000, guid: 33f1fc1fe1fb946cdb15bcf683522617, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
