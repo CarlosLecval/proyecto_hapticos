@@ -19,7 +19,6 @@ public class MainMenu : MonoBehaviour
     private Button blueTeamButton;
     private Button continueButton;
     private Button backButton;
-    private Label selectionSummaryLabel;
     private Label redTeamPlayerTag;
     private Label blueTeamPlayerTag;
     private IVisualElementScheduledItem chooseTeamAnimationReset;
@@ -75,7 +74,6 @@ public class MainMenu : MonoBehaviour
         blueTeamButton = ui.Q<Button>("blue-team-button");
         continueButton = ui.Q<Button>("continue-button");
         backButton = ui.Q<Button>("back-button");
-        selectionSummaryLabel = ui.Q<Label>("selection-summary");
         redTeamPlayerTag = ui.Q<Label>("red-team-player-tag");
         blueTeamPlayerTag = ui.Q<Label>("blue-team-player-tag");
 
@@ -147,7 +145,6 @@ public class MainMenu : MonoBehaviour
         blueTeamButton = null;
         continueButton = null;
         backButton = null;
-        selectionSummaryLabel = null;
         redTeamPlayerTag = null;
         blueTeamPlayerTag = null;
         chooseTeamAnimationReset?.Pause();
@@ -199,20 +196,12 @@ public class MainMenu : MonoBehaviour
         {
             blueTeamPlayerTag.text = isRedSelected ? "Player 2" : "Player 1";
         }
-
-        if (selectionSummaryLabel != null)
-        {
-            selectionSummaryLabel.text = isRedSelected
-                ? "Ready: Player 1 is Red and Player 2 is Blue."
-                : "Ready: Player 1 is Blue and Player 2 is Red.";
-        }
     }
 
     private void TriggerChooseTeamAnimation()
     {
         redTeamPlayerTag?.AddToClassList("animate-swap");
         blueTeamPlayerTag?.AddToClassList("animate-swap");
-        selectionSummaryLabel?.AddToClassList("animate-swap");
 
         chooseTeamAnimationReset?.Pause();
         chooseTeamAnimationReset = ui.schedule.Execute(RemoveChooseTeamAnimationClasses).StartingIn(220);
@@ -222,7 +211,6 @@ public class MainMenu : MonoBehaviour
     {
         redTeamPlayerTag?.RemoveFromClassList("animate-swap");
         blueTeamPlayerTag?.RemoveFromClassList("animate-swap");
-        selectionSummaryLabel?.RemoveFromClassList("animate-swap");
         chooseTeamAnimationReset = null;
     }
 

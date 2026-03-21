@@ -26,6 +26,9 @@
                     <ui:Label name="blue-team-player-tag" text="Player 2" class="player-tag"/>
                 </ui:VisualElement>
             </ui:VisualElement>
+            <ui:VisualElement class="bottom-area">
+                <ui:Button name="continue-button" text="Continue" class="menu-button continue-button"/>
+            </ui:VisualElement>
             <ui:VisualElement class="screen-footer">
                 <ui:Button name="back-button" text="Back" class="menu-button ghost back-button"/>
             </ui:VisualElement>
