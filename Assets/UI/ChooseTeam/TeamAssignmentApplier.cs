@@ -7,8 +7,8 @@ public class TeamAssignmentApplier : MonoBehaviour
 
     private void Awake()
     {
-        ApplyTeamMaterial("Haptic Device", TeamSelectionState.Player1Team);
-        ApplyTeamMaterial("Haptic Device 2", TeamSelectionState.Player2Team);
+        ApplyTeamMaterial("HapticP1", TeamSelectionState.Player1Team);
+        ApplyTeamMaterial("HapticP2", TeamSelectionState.Player2Team);
     }
 
     private void ApplyTeamMaterial(string playerRootName, TeamSelectionState.Team team)
