@@ -13,17 +13,14 @@ public class HM : MonoBehaviour
     private volatile bool isHapticThreadRunning; // volatile to ensure visibility across threads
     private readonly object stateLock = new();
 
+    private int hapticDevicesDetected;
+
     // Haptic workspace
     public float workspace = 100.0f;
-    // Number of haptic devices
-    private int hapticDevicesDetected;
 
     // Position [m] of each haptic device
     private readonly Vector3[] positions = new Vector3[MaxHapticDevices];
-    private readonly bool[] deviceIsColliding = new bool[MaxHapticDevices];
-    private readonly Vector3[] desiredPositions = new Vector3[MaxHapticDevices];
-    private readonly float[] springConstants = new float[MaxHapticDevices];
-    private readonly float[] linearDampings = new float[MaxHapticDevices];
+    private readonly Vector3[] appliedForces = new Vector3[MaxHapticDevices];
 
     void Start()
     {
@@ -69,27 +66,17 @@ public class HM : MonoBehaviour
         {
             for (int i = 0; i < hapticDevicesDetected; i++)
             {
-                // get haptic positions and convert them into scene positions
+                // Get haptic positions and convert them into scene positions
                 Vector3 position = workspace * HapticPluginImport.GetHapticsPositions(hapticPlugin, i);
-                bool isColliding;
-                Vector3 desiredPosition;
-                float springConstant;
-                float linearDamping;
+                Vector3 forceToApply;
 
                 lock (stateLock)
                 {
                     positions[i] = position;
-                    isColliding = deviceIsColliding[i];
-                    desiredPosition = desiredPositions[i];
-                    springConstant = springConstants[i];
-                    linearDamping = linearDampings[i];
+                    forceToApply = appliedForces[i];
                 }
 
-                /* if (isColliding)
-                    SetForceByDesiredPosition(i, desiredPosition, springConstant, linearDamping);
-                else
-                    ClearForces(i); */
-
+                HapticPluginImport.SetHapticsForce(hapticPlugin, i, forceToApply);
                 HapticPluginImport.UpdateHapticDevices(hapticPlugin, i);
             }
         }
@@ -114,27 +101,22 @@ public class HM : MonoBehaviour
             return positions[numHapDev];
     }
 
-    public void UpdateCollisionState(int numHapDev, bool isColliding, Vector3 contactPosition, float springConstant, float linearDamping)
+    public void UpdateCollisionState(int numHapDev, Vector3 totalForce)
     {
         lock (stateLock)
-        {
-            deviceIsColliding[numHapDev] = isColliding;
-            desiredPositions[numHapDev] = contactPosition;
-            springConstants[numHapDev] = springConstant;
-            linearDampings[numHapDev] = linearDamping;
-        }
+            appliedForces[numHapDev] = totalForce;
     }
 
     public float GetHapticDeviceInfo(int numHapDev, int parameter)
     {
         // Haptic info variables
-        // 0 - m_maxLinearForce
+        // 0 - m_maxLinearForce -> 8
         // 1 - m_maxAngularTorque
         // 2 - m_maxGripperForce 
-        // 3 - m_maxLinearStiffness
+        // 3 - m_maxLinearStiffness -> 3000
         // 4 - m_maxAngularStiffness
         // 5 - m_maxGripperLinearStiffness;
-        // 6 - m_maxLinearDamping
+        // 6 - m_maxLinearDamping -> 20
         // 7 - m_maxAngularDamping
         // 8 - m_maxGripperAngularDamping
 
@@ -144,15 +126,15 @@ public class HM : MonoBehaviour
         return (float)HapticPluginImport.GetHapticsDeviceInfo(hapticPlugin, numHapDev, parameter);
     }
 
-    private void SetForceByDesiredPosition(int numHapDev, Vector3 desiredPosition, float springConstant, float linearDamping)
+    public Vector3 GetVelocity(int numHapDev)
     {
-        // Vector3 forceSpring = stiffness * positionError;
-        // Vector3 forceDamping = linearDamping * velocityError;
+        return HapticPluginImport.GetHapticsLinearVelocity(hapticPlugin, numHapDev);
+    }
 
-        Vector3 totalForce = Vector3.zero;// forceSpring + forceDamping;
-        HapticPluginImport.SetHapticsForce(hapticPlugin, numHapDev, totalForce);
+    /* private void SetForceByDesiredPosition(int numHapDev, Vector3 desiredPosition, float springConstant, float linearDamping)
+    {
         // compute linear spring force
-        /* Vector3 direction = desiredPosition - position[hapDevNum];
+        Vector3 direction = desiredPosition - position[hapDevNum];
         Vector3 forceField = stiffness * direction;
 
         // compute linear damping force
@@ -161,11 +143,6 @@ public class HM : MonoBehaviour
 
         // send the combined linear force to the haptic device
         Vector3 totalForce = forceField + forceDamping;
-        HapticPluginImport.SetHapticsForce(hapticPlugin, hapDevNum, totalForce);*/
-    }
-
-    private void ClearForces(int numHapDev)
-    {
-        HapticPluginImport.SetHapticsForce(hapticPlugin, numHapDev, Vector3.zero);
-    }
+        HapticPluginImport.SetHapticsForce(hapticPlugin, hapDevNum, totalForce);
+    } */
 }

@@ -12,65 +12,87 @@ public class IHIP : MonoBehaviour
     // Haptic device variables
     [Header("Haptic Device Number")]
     public int numHapDev;
-    private Vector3 actualPosition;
 
     // IHIP variables
-    private Vector3 collisionPosition;
-    private bool isColliding = false;
     private Rigidbody rigidBody;
     private float radius;
 
-    // Physics coefficients
-    public float springConstant = 50; // [N/m] max: 1000
-    public float dampingCoefficient = 10; // [N/m] max: 20
+    private Vector3 totalForce = Vector3.zero;
+    private bool isCollidingWithBound = false;
 
     void Start()
     {
         hapticManager = HMObject.GetComponent<HM>();
         rigidBody = GetComponent<Rigidbody>();
         radius = GetComponent<Renderer>().bounds.extents.magnitude / 2;
-        actualPosition = HIPObject.transform.position;
-        /* SphereCollider sphereCollider = GetComponent<SphereCollider>();
-        if (sphereCollider != null)
-            radius = sphereCollider.radius * Mathf.Max(transform.lossyScale.x, transform.lossyScale.y, transform.lossyScale.z);
-        else */
+
+        HIPObject.transform.position = hapticManager.GetPosition(numHapDev);
+        rigidBody.position = HIPObject.transform.position;
     }
 
     void FixedUpdate()
     {
-        actualPosition = hapticManager.GetPosition(numHapDev);
-        HIPObject.transform.position = actualPosition;
+        Vector3 position = hapticManager.GetPosition(numHapDev);
+        HIPObject.transform.position = position;
 
-        if (rigidBody.position != actualPosition)
-        {
-            rigidBody.MovePosition(actualPosition);
-        }
+        Vector3 newPosition = position;
+
+        if (position.y < radius - .5f)
+            newPosition.y = radius - .5f;
+        else if (position.y > 29.5f - radius)
+            newPosition.y = 29.5f - radius;
+
+        if (position.x < -35f + radius)
+            newPosition.x = -35f + radius;
+        else if (position.x > 35f - radius)
+            newPosition.x = 35f - radius;
+
+        if (position.z < -25f + radius)
+            newPosition.z = -25f + radius;
+        else if (position.z > 25f - radius)
+            newPosition.z = 25f - radius;
+
+        if (rigidBody.position != newPosition)
+            rigidBody.MovePosition(newPosition);
     }
 
     void OnCollisionEnter(Collision collision)
     {
-        isColliding = true;
-        UpdateCollisionPositions(collision);
+        if (collision.gameObject.name == "Ball")
+            collision.gameObject.GetComponent<Rigidbody>().AddForce(-collision.GetContact(0).normal * 10f, ForceMode.Impulse);
+
+        UpdateCollisionForce(collision);
     }
 
     void OnCollisionStay(Collision collision)
     {
-        UpdateCollisionPositions(collision);
+        UpdateCollisionForce(collision);
     }
 
     void OnCollisionExit(Collision collision)
     {
-        isColliding = false;
-        collisionPosition = rigidBody.position;
-        hapticManager.UpdateCollisionState(numHapDev, false, collisionPosition, springConstant, dampingCoefficient);
+        isCollidingWithBound = false;
+        totalForce = Vector3.zero;
+        hapticManager.UpdateCollisionState(numHapDev, Vector3.zero);
     }
 
-    private void UpdateCollisionPositions(Collision collision)
+    private void UpdateCollisionForce(Collision collision)
     {
-        if (collision.contactCount == 0) return;
-
         ContactPoint contact = collision.GetContact(0);
-        collisionPosition = contact.point + (radius * contact.normal);
-        hapticManager.UpdateCollisionState(numHapDev, true, collisionPosition, springConstant, dampingCoefficient);
+
+        if (collision.gameObject.name == "Grass" || collision.gameObject.name.Contains("Bound"))
+        {
+            isCollidingWithBound = true;
+            totalForce = contact.normal * 2.5f;
+        }
+        else if (collision.gameObject.name == "Ball")
+        {
+            if (isCollidingWithBound)
+                totalForce += contact.normal;
+            else
+                totalForce = contact.normal * 1.5f;
+        }
+
+        hapticManager.UpdateCollisionState(numHapDev, totalForce);
     }
 }
