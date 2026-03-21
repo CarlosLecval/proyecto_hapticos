@@ -1,0 +1,37 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/ChooseTeam/ChooseTeam.uss?fileID=7433441132597879392&amp;guid=263d32e14546248f4b98c4e4b82a8e84&amp;type=3#ChooseTeam"/>
+    <ui:VisualElement name="ChooseTeamRoot" class="choose-team-root">
+        <ui:VisualElement class="bg-tilt"/>
+        <ui:VisualElement class="bg-stripes"/>
+        <ui:VisualElement class="choose-team-content">
+            <ui:VisualElement class="header">
+                <ui:Label text="Choose Team" class="title"/>
+                <ui:Label text="Pick a side for Player 1. Player 2 updates automatically." class="subtitle"/>
+            </ui:VisualElement>
+            <ui:VisualElement class="team-grid">
+                <ui:VisualElement class="team-slot">
+                    <ui:Button name="red-team-button" class="team-button red-team">
+                        <ui:VisualElement class="team-button-content">
+                            <ui:Label text="RED" class="team-name"/>
+                        </ui:VisualElement>
+                    </ui:Button>
+                    <ui:Label name="red-team-player-tag" text="Player 1" class="player-tag"/>
+                </ui:VisualElement>
+                <ui:VisualElement class="team-slot">
+                    <ui:Button name="blue-team-button" class="team-button blue-team">
+                        <ui:VisualElement class="team-button-content">
+                            <ui:Label text="BLUE" class="team-name"/>
+                        </ui:VisualElement>
+                    </ui:Button>
+                    <ui:Label name="blue-team-player-tag" text="Player 2" class="player-tag"/>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement class="bottom-area">
+                <ui:Button name="continue-button" text="Continue" class="menu-button continue-button"/>
+            </ui:VisualElement>
+            <ui:VisualElement class="screen-footer">
+                <ui:Button name="back-button" text="Back" class="menu-button ghost back-button"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

@@ -6,6 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/00 -HapticConnectivity.unity
-    guid: 8cab1866c27a1104b883a4d9b0e45e1a
+    path: Assets/Scenes/Menu.unity
+    guid: 0221853672a394a1c9b39b4f550cc5ec
+  - enabled: 1
+    path: Assets/Scenes/Game.unity
+    guid: e03838fdab41547999613c11427066a4
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0
