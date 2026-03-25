@@ -1,0 +1,42 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/GameHUD.uss?fileID=7433441132597879392&amp;guid=9bda94c91f1d411ca742373d955fceca&amp;type=3#GameHUD"/>
+    <ui:VisualElement name="GameHudRoot" class="game-hud-root">
+        <ui:VisualElement name="winner-overlay" class="winner-overlay">
+            <ui:VisualElement class="winner-backdrop-tilt"/>
+            <ui:VisualElement class="winner-backdrop-stripes"/>
+            <ui:VisualElement class="winner-ball"/>
+            <ui:VisualElement name="winner-card" class="winner-card player-blue">
+                <ui:Label text="MATCH COMPLETE" class="winner-kicker"/>
+                <ui:Label name="winner-title" text="BLUE TEAM WINS" class="winner-title"/>
+                <ui:VisualElement class="winner-score-row">
+                    <ui:VisualElement class="winner-score-block">
+                        <ui:Label name="winner-left-team" text="RED" class="winner-score-team"/>
+                        <ui:Label name="winner-left-score" text="2" class="winner-score-value"/>
+                    </ui:VisualElement>
+                    <ui:Label text="VS" class="winner-score-divider"/>
+                    <ui:VisualElement class="winner-score-block">
+                        <ui:Label name="winner-right-team" text="BLUE" class="winner-score-team"/>
+                        <ui:Label name="winner-right-score" text="4" class="winner-score-value"/>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement class="winner-footer">
+                    <ui:Button name="winner-main-menu-button" text="Exit to Main Menu" class="winner-menu-button"/>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement class="hud-top-row">
+            <ui:VisualElement name="player-1-card" class="score-card player-card player-red">
+                <ui:Label name="player-1-team-label" text="RED" class="team-label"/>
+                <ui:Label name="player-1-score" text="0" class="score-value"/>
+            </ui:VisualElement>
+            <ui:VisualElement class="timer-card">
+                <ui:Label text="TIME" class="timer-caption"/>
+                <ui:Label name="timer-label" text="01:00" class="timer-value"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="player-2-card" class="score-card player-card player-blue">
+                <ui:Label name="player-2-team-label" text="BLUE" class="team-label"/>
+                <ui:Label name="player-2-score" text="0" class="score-value"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
