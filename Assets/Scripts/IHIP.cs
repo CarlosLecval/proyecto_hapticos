@@ -42,15 +42,15 @@ public class IHIP : MonoBehaviour
         else if (position.y > 29.5f - radius)
             newPosition.y = 29.5f - radius;
 
-        if (position.x < -35f + radius)
-            newPosition.x = -35f + radius;
-        else if (position.x > 35f - radius)
-            newPosition.x = 35f - radius;
+        if (position.x < -62f + radius)
+            newPosition.x = -62f + radius;
+        else if (position.x > 62f - radius)
+            newPosition.x = 62f - radius;
 
-        if (position.z < -25f + radius)
-            newPosition.z = -25f + radius;
-        else if (position.z > 25f - radius)
-            newPosition.z = 25f - radius;
+        if (position.z < -33f + radius)
+            newPosition.z = -33f + radius;
+        else if (position.z > 33f - radius)
+            newPosition.z = 33f - radius;
 
         if (rigidBody.position != newPosition)
             rigidBody.MovePosition(newPosition);
