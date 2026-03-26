@@ -870,7 +870,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &385018133
 Transform:
   m_ObjectHideFlags: 0
@@ -1729,7 +1729,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1357596720
 Transform:
   m_ObjectHideFlags: 0
@@ -2078,11 +2078,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3041520258016383779, guid: 7b64f8e83937a435a80cddc21119d9df,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 33f1fc1fe1fb946cdb15bcf683522617, type: 2}
     - target: {fileID: 919132149155446097, guid: 7b64f8e83937a435a80cddc21119d9df,
         type: 3}
       propertyPath: m_Name
       value: Jugador
       objectReference: {fileID: 0}
+    - target: {fileID: 1397504996835444269, guid: 7b64f8e83937a435a80cddc21119d9df,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 33f1fc1fe1fb946cdb15bcf683522617, type: 2}
+    - target: {fileID: 1974176812343976837, guid: 7b64f8e83937a435a80cddc21119d9df,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 33f1fc1fe1fb946cdb15bcf683522617, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2621,11 +2636,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3712233331326215166, guid: 7b64f8e83937a435a80cddc21119d9df,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3f9816329e08b4ad5bec93918424bd9a, type: 2}
+    - target: {fileID: -3041520258016383779, guid: 7b64f8e83937a435a80cddc21119d9df,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 952e1de1c31ba4620b2ab3030607a4f4, type: 2}
     - target: {fileID: 919132149155446097, guid: 7b64f8e83937a435a80cddc21119d9df,
         type: 3}
       propertyPath: m_Name
       value: Jugador
       objectReference: {fileID: 0}
+    - target: {fileID: 1397504996835444269, guid: 7b64f8e83937a435a80cddc21119d9df,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 952e1de1c31ba4620b2ab3030607a4f4, type: 2}
+    - target: {fileID: 1974176812343976837, guid: 7b64f8e83937a435a80cddc21119d9df,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 952e1de1c31ba4620b2ab3030607a4f4, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

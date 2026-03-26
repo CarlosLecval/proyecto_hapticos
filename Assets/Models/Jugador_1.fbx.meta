@@ -3,7 +3,17 @@ guid: 7b64f8e83937a435a80cddc21119d9df
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "Pl\xE1stico brillo medio"
+    second: {fileID: 2100000, guid: 3f9816329e08b4ad5bec93918424bd9a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "Pl\xE1stico brillo medio_5"
+    second: {fileID: 2100000, guid: 952e1de1c31ba4620b2ab3030607a4f4, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
