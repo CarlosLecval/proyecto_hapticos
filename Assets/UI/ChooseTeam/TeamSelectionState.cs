@@ -6,13 +6,17 @@ public static class TeamSelectionState
         Blue
     }
 
-    public static Team Player1Team { get; private set; } = Team.Red;
+    public static Team Device0Team { get; private set; } = Team.Red;
 
-    public static Team Player2Team { get; private set; } = Team.Blue;
+    public static Team Device1Team { get; private set; } = Team.Blue;
 
-    public static void AssignTeams(Team player1Team)
+    public static int RedDeviceIndex => Device0Team == Team.Red ? 0 : 1;
+
+    public static int BlueDeviceIndex => Device0Team == Team.Blue ? 0 : 1;
+
+    public static void AssignDevice0Team(Team device0Team)
     {
-        Player1Team = player1Team;
-        Player2Team = player1Team == Team.Red ? Team.Blue : Team.Red;
+        Device0Team = device0Team;
+        Device1Team = device0Team == Team.Red ? Team.Blue : Team.Red;
     }
 }
