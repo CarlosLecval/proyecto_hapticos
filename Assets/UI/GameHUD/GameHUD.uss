@@ -1,0 +1,335 @@
+.game-hud-root {
+    flex-grow: 1;
+    width: 100%;
+    height: 100%;
+    padding-top: 26px;
+    padding-left: 28px;
+    padding-right: 28px;
+    align-items: center;
+}
+
+.winner-overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(7, 11, 18, 0.76);
+    visibility: hidden;
+    opacity: 0;
+    transition-property: opacity;
+    transition-duration: 180ms;
+}
+
+.winner-overlay.visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+.winner-backdrop-tilt {
+    position: absolute;
+    left: -10%;
+    top: -22%;
+    width: 120%;
+    height: 150%;
+    background-color: rgba(16, 20, 34, 0.82);
+    rotate: -8deg;
+}
+
+.winner-backdrop-stripes {
+    position: absolute;
+    left: -4%;
+    top: 18%;
+    width: 108%;
+    height: 52%;
+    background-color: rgba(22, 32, 56, 0.84);
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-top-color: rgba(255, 255, 255, 0.08);
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+.winner-ball {
+    position: absolute;
+    right: 11%;
+    top: 14%;
+    width: 156px;
+    height: 156px;
+    opacity: 0.22;
+    background-image: url("project://database/Assets/Textures/soccer.png?fileID=2800000&guid=00000000000000000000000000000000&type=3");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.winner-card {
+    width: 76%;
+    max-width: 760px;
+    min-width: 340px;
+    padding-top: 28px;
+    padding-bottom: 26px;
+    padding-left: 30px;
+    padding-right: 30px;
+    background-color: rgba(18, 26, 42, 0.94);
+    border-top-left-radius: 28px;
+    border-top-right-radius: 28px;
+    border-bottom-left-radius: 28px;
+    border-bottom-right-radius: 28px;
+    border-top-width: 1px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-top-color: rgba(255, 255, 255, 0.18);
+    border-left-color: rgba(255, 255, 255, 0.1);
+    border-right-color: rgba(0, 0, 0, 0.4);
+    border-bottom-color: rgba(0, 0, 0, 0.56);
+    box-shadow: 0 26px 48px rgba(0, 0, 0, 0.42);
+    align-items: center;
+}
+
+.winner-kicker {
+    font-size: 12px;
+    letter-spacing: 4px;
+    color: rgba(255, 255, 255, 0.62);
+}
+
+.winner-title {
+    margin-top: 6px;
+    -unity-font-definition: url("project://database/Assets/Urban%20Starblues%20Demo.otf?fileID=12800000&guid=84f0212b0f67046fbb1af6e95c238d1d&type=3#Urban Starblues Demo");
+    font-size: 48px;
+    letter-spacing: 3px;
+    color: rgb(236, 249, 255);
+    unity-text-align: middle-center;
+}
+
+.winner-subtitle {
+    margin-top: 4px;
+    font-size: 15px;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.76);
+    unity-text-align: middle-center;
+}
+
+.winner-score-row {
+    margin-top: 22px;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+.winner-score-block {
+    min-width: 200px;
+    min-height: 168px;
+    padding-top: 20px;
+    padding-bottom: 18px;
+    padding-left: 18px;
+    padding-right: 18px;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(10, 16, 28, 0.62);
+    border-top-left-radius: 22px;
+    border-top-right-radius: 22px;
+    border-bottom-left-radius: 22px;
+    border-bottom-right-radius: 22px;
+    border-top-width: 1px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-top-color: rgba(255, 255, 255, 0.12);
+    border-left-color: rgba(255, 255, 255, 0.07);
+    border-right-color: rgba(0, 0, 0, 0.36);
+    border-bottom-color: rgba(0, 0, 0, 0.5);
+}
+
+.winner-score-team {
+    font-size: 20px;
+    unity-font-style: bold;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.88);
+}
+
+.winner-score-value {
+    margin-top: 8px;
+    -unity-font-definition: url("project://database/Assets/Urban%20Starblues%20Demo.otf?fileID=12800000&guid=84f0212b0f67046fbb1af6e95c238d1d&type=3#Urban Starblues Demo");
+    font-size: 62px;
+    letter-spacing: 3px;
+    color: rgb(250, 252, 255);
+}
+
+.winner-score-divider {
+    font-size: 18px;
+    unity-font-style: bold;
+    letter-spacing: 4px;
+    color: rgba(255, 255, 255, 0.48);
+}
+
+.winner-footer {
+    margin-top: 22px;
+    width: 100%;
+    align-items: center;
+}
+
+.winner-menu-button {
+    min-width: 240px;
+    height: 52px;
+    padding-left: 24px;
+    padding-right: 24px;
+    background-color: rgba(255, 255, 255, 0.08);
+    color: rgb(250, 252, 255);
+    unity-font-style: bold;
+    font-size: 16px;
+    letter-spacing: 1px;
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+    border-bottom-left-radius: 14px;
+    border-bottom-right-radius: 14px;
+    border-top-width: 1px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-top-color: rgba(255, 255, 255, 0.24);
+    border-left-color: rgba(255, 255, 255, 0.14);
+    border-right-color: rgba(0, 0, 0, 0.46);
+    border-bottom-color: rgba(0, 0, 0, 0.56);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.32);
+    transition-property: background-color, scale;
+    transition-duration: 140ms;
+}
+
+.winner-menu-button:hover {
+    background-color: rgba(255, 255, 255, 0.16);
+    scale: 1.015;
+}
+
+.winner-menu-button:active {
+    background-color: rgba(255, 255, 255, 0.11);
+    scale: 0.99;
+}
+
+.hud-top-row {
+    width: 100%;
+    max-width: 1180px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.score-card,
+.timer-card {
+    min-height: 132px;
+    padding-top: 18px;
+    padding-bottom: 18px;
+    padding-left: 22px;
+    padding-right: 22px;
+    background-color: rgba(18, 26, 42, 0.82);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-top-width: 1px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-top-color: rgba(255, 255, 255, 0.16);
+    border-left-color: rgba(255, 255, 255, 0.08);
+    border-right-color: rgba(0, 0, 0, 0.32);
+    border-bottom-color: rgba(0, 0, 0, 0.46);
+    box-shadow: 0 18px 34px rgba(0, 0, 0, 0.32);
+}
+
+.player-card {
+    width: 270px;
+    gap: 2px;
+}
+
+.timer-card {
+    min-width: 220px;
+    align-items: center;
+    background-color: rgba(14, 21, 36, 0.92);
+}
+
+.player-label,
+.timer-caption {
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: rgba(255, 255, 255, 0.72);
+}
+
+.team-label {
+    font-size: 18px;
+    unity-font-style: bold;
+    letter-spacing: 2px;
+    color: rgb(236, 249, 255);
+}
+
+.score-value,
+.timer-value {
+    -unity-font-definition: url("project://database/Assets/Urban%20Starblues%20Demo.otf?fileID=12800000&guid=84f0212b0f67046fbb1af6e95c238d1d&type=3#Urban Starblues Demo");
+    color: rgb(250, 252, 255);
+}
+
+.score-value {
+    margin-top: 6px;
+    font-size: 54px;
+    letter-spacing: 3px;
+}
+
+.timer-value {
+    margin-top: 2px;
+    font-size: 42px;
+    letter-spacing: 3px;
+    color: rgb(108, 183, 253);
+}
+
+.player-red {
+    border-top-color: rgba(255, 214, 214, 0.34);
+}
+
+.player-red .team-label,
+.player-red .score-value {
+    color: rgb(255, 110, 110);
+}
+
+.player-blue {
+    border-top-color: rgba(214, 232, 255, 0.34);
+}
+
+.player-blue .team-label,
+.player-blue .score-value {
+    color: rgb(108, 183, 253);
+}
+
+.winner-card.player-red {
+    border-top-color: rgba(255, 214, 214, 0.34);
+}
+
+.winner-card.player-red .winner-title,
+.winner-card.player-red .winner-score-value,
+.winner-card.player-red .winner-score-team {
+    color: rgb(255, 110, 110);
+}
+
+.winner-card.player-blue {
+    border-top-color: rgba(214, 232, 255, 0.34);
+}
+
+.winner-card.player-blue .winner-title,
+.winner-card.player-blue .winner-score-value,
+.winner-card.player-blue .winner-score-team {
+    color: rgb(108, 183, 253);
+}
+
+.winner-card.draw-state {
+    border-top-color: rgba(255, 255, 255, 0.28);
+}
+
+.winner-card.draw-state .winner-title,
+.winner-card.draw-state .winner-score-value,
+.winner-card.draw-state .winner-score-team {
+    color: rgb(236, 249, 255);
+}

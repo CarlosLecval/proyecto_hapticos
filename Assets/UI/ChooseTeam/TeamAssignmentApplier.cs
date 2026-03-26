@@ -2,41 +2,68 @@ using UnityEngine;
 
 public class TeamAssignmentApplier : MonoBehaviour
 {
+    private const string RedHapticObjectName = "HapticRed";
+    private const string BlueHapticObjectName = "HapticBlue";
+
     [SerializeField] private Material redTeamMaterial;
     [SerializeField] private Material blueTeamMaterial;
 
     private void Awake()
     {
-        ApplyTeamMaterial("HapticP1", TeamSelectionState.Player1Team);
-        ApplyTeamMaterial("HapticP2", TeamSelectionState.Player2Team);
+        ApplyTeamSetup(RedHapticObjectName, redTeamMaterial, TeamSelectionState.RedDeviceIndex);
+        ApplyTeamSetup(BlueHapticObjectName, blueTeamMaterial, TeamSelectionState.BlueDeviceIndex);
     }
 
-    private void ApplyTeamMaterial(string playerRootName, TeamSelectionState.Team team)
+    private void ApplyTeamSetup(string rootObjectName, Material teamMaterial, int deviceIndex)
     {
-        GameObject playerRoot = GameObject.Find(playerRootName);
+        GameObject teamRoot = GameObject.Find(rootObjectName);
 
-        if (playerRoot == null)
+        if (teamRoot == null)
         {
-            Debug.LogWarning("Could not find player root: " + playerRootName);
+            Debug.LogWarning("Could not find team root: " + rootObjectName);
             return;
         }
 
-        Renderer playerRenderer = playerRoot.GetComponentInChildren<Renderer>(true);
+        ApplyTeamMaterial(teamRoot, teamMaterial);
+        ApplyDeviceAssignment(teamRoot, deviceIndex);
+    }
 
-        if (playerRenderer == null)
+    private void ApplyTeamMaterial(GameObject teamRoot, Material teamMaterial)
+    {
+        Renderer teamRenderer = teamRoot.GetComponentInChildren<Renderer>(true);
+
+        if (teamRenderer == null)
         {
-            Debug.LogWarning("Could not find renderer for player root: " + playerRootName);
+            Debug.LogWarning("Could not find renderer for team root: " + teamRoot.name);
             return;
         }
-
-        Material teamMaterial = team == TeamSelectionState.Team.Red ? redTeamMaterial : blueTeamMaterial;
 
         if (teamMaterial == null)
         {
-            Debug.LogWarning("Team material is not assigned for " + team);
+            Debug.LogWarning("Team material is not assigned for " + teamRoot.name);
             return;
         }
 
-        playerRenderer.material = teamMaterial;
+        teamRenderer.material = teamMaterial;
+    }
+
+    private void ApplyDeviceAssignment(GameObject teamRoot, int deviceIndex)
+    {
+        IHIP ihip = teamRoot.GetComponentInChildren<IHIP>(true);
+        if (ihip != null)
+        {
+            ihip.numHapDev = deviceIndex;
+        }
+
+        HapticInteractionPoint interactionPoint = teamRoot.GetComponentInChildren<HapticInteractionPoint>(true);
+        if (interactionPoint != null)
+        {
+            interactionPoint.hapticDevice = deviceIndex;
+        }
+
+        if (ihip == null && interactionPoint == null)
+        {
+            Debug.LogWarning("Could not find a haptic control component under " + teamRoot.name);
+        }
     }
 }
