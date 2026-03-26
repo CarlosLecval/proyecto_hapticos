@@ -24,27 +24,7 @@ public class TeamAssignmentApplier : MonoBehaviour
             return;
         }
 
-        ApplyTeamMaterial(teamRoot, teamMaterial);
         ApplyDeviceAssignment(teamRoot, deviceIndex);
-    }
-
-    private void ApplyTeamMaterial(GameObject teamRoot, Material teamMaterial)
-    {
-        Renderer teamRenderer = teamRoot.GetComponentInChildren<Renderer>(true);
-
-        if (teamRenderer == null)
-        {
-            Debug.LogWarning("Could not find renderer for team root: " + teamRoot.name);
-            return;
-        }
-
-        if (teamMaterial == null)
-        {
-            Debug.LogWarning("Team material is not assigned for " + teamRoot.name);
-            return;
-        }
-
-        teamRenderer.material = teamMaterial;
     }
 
     private void ApplyDeviceAssignment(GameObject teamRoot, int deviceIndex)

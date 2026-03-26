@@ -1,7 +1,8 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-[RequireComponent(typeof(Renderer))]
+// [RequireComponent(typeof(Renderer))]
+[RequireComponent(typeof(CapsuleCollider))]
 public class IHIP : MonoBehaviour
 {
     public GameObject HMObject;
@@ -16,6 +17,7 @@ public class IHIP : MonoBehaviour
     // IHIP variables
     private Rigidbody rigidBody;
     private float radius;
+    private float height;
 
     private Vector3 totalForce = Vector3.zero;
     private bool isCollidingWithBound = false;
@@ -24,7 +26,11 @@ public class IHIP : MonoBehaviour
     {
         hapticManager = HMObject.GetComponent<HM>();
         rigidBody = GetComponent<Rigidbody>();
-        radius = GetComponent<Renderer>().bounds.extents.magnitude / 2;
+        CapsuleCollider capsule = GetComponent<CapsuleCollider>();
+        radius = capsule.radius * transform.lossyScale.x; // GetComponent<Renderer>().bounds.extents.magnitude / 2;
+        height = capsule.height * transform.lossyScale.z;
+
+        Debug.Log("Radius: " + radius + ", Height: " + height);
 
         HIPObject.transform.position = hapticManager.GetPosition(numHapDev);
         rigidBody.position = HIPObject.transform.position;
@@ -37,10 +43,10 @@ public class IHIP : MonoBehaviour
 
         Vector3 newPosition = position;
 
-        if (position.y < radius - .5f)
-            newPosition.y = radius - .5f;
-        else if (position.y > 29.5f - radius)
-            newPosition.y = 29.5f - radius;
+        if (position.y < -.5f)
+            newPosition.y = -.5f;
+        else if (position.y > 29.5f - height)
+            newPosition.y = 29.5f - height;
 
         if (position.x < -62f + radius)
             newPosition.x = -62f + radius;
@@ -80,7 +86,20 @@ public class IHIP : MonoBehaviour
     {
         ContactPoint contact = collision.GetContact(0);
 
-        if (collision.gameObject.name == "Grass" || collision.gameObject.name.Contains("Bound"))
+        if (collision.gameObject.name == "Ball")
+        {
+            if (isCollidingWithBound)
+                totalForce += contact.normal;
+            else
+                totalForce = contact.normal * 1.5f;
+        }
+        else
+        {
+            isCollidingWithBound = true;
+            totalForce = contact.normal * 2.5f;
+        }
+
+        /* if (collision.gameObject.name == "Grass" || collision.gameObject.name.Contains("Bound"))
         {
             isCollidingWithBound = true;
             totalForce = contact.normal * 2.5f;
@@ -91,7 +110,7 @@ public class IHIP : MonoBehaviour
                 totalForce += contact.normal;
             else
                 totalForce = contact.normal * 1.5f;
-        }
+        } */
 
         hapticManager.UpdateCollisionState(numHapDev, totalForce);
     }
