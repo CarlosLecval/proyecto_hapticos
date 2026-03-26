@@ -159,14 +159,14 @@ public class MainMenu : MonoBehaviour
     private void OnRedTeamClicked()
     {
         TriggerChooseTeamAnimation();
-        TeamSelectionState.AssignTeams(TeamSelectionState.Team.Red);
+        TeamSelectionState.AssignDevice0Team(TeamSelectionState.Team.Red);
         UpdateChooseTeamSelection();
     }
 
     private void OnBlueTeamClicked()
     {
         TriggerChooseTeamAnimation();
-        TeamSelectionState.AssignTeams(TeamSelectionState.Team.Blue);
+        TeamSelectionState.AssignDevice0Team(TeamSelectionState.Team.Blue);
         UpdateChooseTeamSelection();
     }
 
@@ -182,19 +182,19 @@ public class MainMenu : MonoBehaviour
 
     private void UpdateChooseTeamSelection()
     {
-        bool isRedSelected = TeamSelectionState.Player1Team == TeamSelectionState.Team.Red;
+        bool isRedSelected = TeamSelectionState.Device0Team == TeamSelectionState.Team.Red;
 
         redTeamButton?.EnableInClassList("selected", isRedSelected);
         blueTeamButton?.EnableInClassList("selected", !isRedSelected);
 
         if (redTeamPlayerTag != null)
         {
-            redTeamPlayerTag.text = isRedSelected ? "Player 1" : "Player 2";
+            redTeamPlayerTag.text = isRedSelected ? "Haptic Device 0" : "Haptic Device 1";
         }
 
         if (blueTeamPlayerTag != null)
         {
-            blueTeamPlayerTag.text = isRedSelected ? "Player 2" : "Player 1";
+            blueTeamPlayerTag.text = isRedSelected ? "Haptic Device 1" : "Haptic Device 0";
         }
     }
 

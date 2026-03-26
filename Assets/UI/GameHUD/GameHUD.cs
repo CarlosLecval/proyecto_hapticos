@@ -129,31 +129,29 @@ public class GameHUD : MonoBehaviour
 
     private void ApplyTeamStyles()
     {
-        bool isPlayer1Red = TeamSelectionState.Player1Team == TeamSelectionState.Team.Red;
-
-        player1Card?.EnableInClassList("player-red", isPlayer1Red);
-        player1Card?.EnableInClassList("player-blue", !isPlayer1Red);
-        player2Card?.EnableInClassList("player-red", !isPlayer1Red);
-        player2Card?.EnableInClassList("player-blue", isPlayer1Red);
+        player1Card?.EnableInClassList("player-red", true);
+        player1Card?.EnableInClassList("player-blue", false);
+        player2Card?.EnableInClassList("player-red", false);
+        player2Card?.EnableInClassList("player-blue", true);
 
         if (player1TeamLabel != null)
         {
-            player1TeamLabel.text = isPlayer1Red ? "RED" : "BLUE";
+            player1TeamLabel.text = "RED";
         }
 
         if (player2TeamLabel != null)
         {
-            player2TeamLabel.text = isPlayer1Red ? "BLUE" : "RED";
+            player2TeamLabel.text = "BLUE";
         }
 
         if (winnerLeftTeamLabel != null)
         {
-            winnerLeftTeamLabel.text = player1TeamLabel != null ? player1TeamLabel.text : (isPlayer1Red ? "RED" : "BLUE");
+            winnerLeftTeamLabel.text = "RED";
         }
 
         if (winnerRightTeamLabel != null)
         {
-            winnerRightTeamLabel.text = player2TeamLabel != null ? player2TeamLabel.text : (isPlayer1Red ? "BLUE" : "RED");
+            winnerRightTeamLabel.text = "BLUE";
         }
     }
 

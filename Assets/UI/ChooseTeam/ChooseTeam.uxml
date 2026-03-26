@@ -6,7 +6,7 @@
         <ui:VisualElement class="choose-team-content">
             <ui:VisualElement class="header">
                 <ui:Label text="Choose Team" class="title"/>
-                <ui:Label text="Pick a side for Player 1. Player 2 updates automatically." class="subtitle"/>
+                <ui:Label text="Choose which team Haptic Device 0 controls. Haptic Device 1 updates automatically." class="subtitle"/>
             </ui:VisualElement>
             <ui:VisualElement class="team-grid">
                 <ui:VisualElement class="team-slot">
@@ -15,7 +15,7 @@
                             <ui:Label text="RED" class="team-name"/>
                         </ui:VisualElement>
                     </ui:Button>
-                    <ui:Label name="red-team-player-tag" text="Player 1" class="player-tag"/>
+                    <ui:Label name="red-team-player-tag" text="Haptic Device 0" class="player-tag"/>
                 </ui:VisualElement>
                 <ui:VisualElement class="team-slot">
                     <ui:Button name="blue-team-button" class="team-button blue-team">
@@ -23,7 +23,7 @@
                             <ui:Label text="BLUE" class="team-name"/>
                         </ui:VisualElement>
                     </ui:Button>
-                    <ui:Label name="blue-team-player-tag" text="Player 2" class="player-tag"/>
+                    <ui:Label name="blue-team-player-tag" text="Haptic Device 1" class="player-tag"/>
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement class="bottom-area">
