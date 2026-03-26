@@ -16,7 +16,7 @@ public class HM : MonoBehaviour
     private int hapticDevicesDetected;
 
     // Haptic workspace
-    public float workspace = 100.0f;
+    public float workspace = 1500.0f;
 
     // Position [m] of each haptic device
     private readonly Vector3[] positions = new Vector3[MaxHapticDevices];
@@ -43,13 +43,6 @@ public class HM : MonoBehaviour
             IsBackground = true
         };
         hapticThread.Start();
-    }
-
-    void Update()
-    {
-        // Exit application
-        if (Input.GetKey(KeyCode.Escape))
-            Application.Quit();
     }
 
     void OnDestroy()
@@ -130,19 +123,4 @@ public class HM : MonoBehaviour
     {
         return HapticPluginImport.GetHapticsLinearVelocity(hapticPlugin, numHapDev);
     }
-
-    /* private void SetForceByDesiredPosition(int numHapDev, Vector3 desiredPosition, float springConstant, float linearDamping)
-    {
-        // compute linear spring force
-        Vector3 direction = desiredPosition - position[hapDevNum];
-        Vector3 forceField = stiffness * direction;
-
-        // compute linear damping force
-        Vector3 linearVelocity = HapticPluginImport.GetHapticsLinearVelocity(hapticPlugin, hapDevNum);
-        Vector3 forceDamping = -linearDamping * linearVelocity;
-
-        // send the combined linear force to the haptic device
-        Vector3 totalForce = forceField + forceDamping;
-        HapticPluginImport.SetHapticsForce(hapticPlugin, hapDevNum, totalForce);
-    } */
 }

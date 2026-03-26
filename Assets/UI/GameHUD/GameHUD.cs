@@ -89,12 +89,12 @@ public class GameHUD : MonoBehaviour
 
     public void AddScore(int teamNumber)
     {
-        if(!isTimerRunning) return;
-        if(teamNumber == 1)
+        if (!isTimerRunning) return;
+        if (teamNumber == 1)
         {
             SetScore(player1Score + 1, player2Score);
         }
-        else if(teamNumber == 2)
+        else if (teamNumber == 2)
         {
             SetScore(player1Score, player2Score + 1);
         }

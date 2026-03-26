@@ -27,10 +27,8 @@ public class IHIP : MonoBehaviour
         hapticManager = HMObject.GetComponent<HM>();
         rigidBody = GetComponent<Rigidbody>();
         CapsuleCollider capsule = GetComponent<CapsuleCollider>();
-        radius = capsule.radius * transform.lossyScale.x; // GetComponent<Renderer>().bounds.extents.magnitude / 2;
+        radius = capsule.radius * transform.lossyScale.x;
         height = capsule.height * transform.lossyScale.z;
-
-        Debug.Log("Radius: " + radius + ", Height: " + height);
 
         HIPObject.transform.position = hapticManager.GetPosition(numHapDev);
         rigidBody.position = HIPObject.transform.position;
@@ -98,19 +96,6 @@ public class IHIP : MonoBehaviour
             isCollidingWithBound = true;
             totalForce = contact.normal * 2.5f;
         }
-
-        /* if (collision.gameObject.name == "Grass" || collision.gameObject.name.Contains("Bound"))
-        {
-            isCollidingWithBound = true;
-            totalForce = contact.normal * 2.5f;
-        }
-        else if (collision.gameObject.name == "Ball")
-        {
-            if (isCollidingWithBound)
-                totalForce += contact.normal;
-            else
-                totalForce = contact.normal * 1.5f;
-        } */
 
         hapticManager.UpdateCollisionState(numHapDev, totalForce);
     }

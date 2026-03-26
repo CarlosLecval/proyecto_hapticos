@@ -67,5 +67,5 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "proyecto_hapticos_score.slnx"
+    "dotnet.defaultSolution": "proyecto_hapticos.slnx"
 }
